@@ -1,3 +1,3 @@
-# Objectives and Key Results (OKR)
+# For Objectives and Key Results (4OKR)
 
 Application for OKR management.
