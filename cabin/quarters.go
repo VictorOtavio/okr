@@ -10,8 +10,10 @@ import (
 )
 
 type quarter struct {
-	ID          int    `json:"id"`
-	Description string `json:"description"`
+	ID        int    `json:"id"`
+	Title     string `json:"title"`
+	StartDate string `json:"start_date"`
+	EndDate   string `json:"end_date"`
 }
 
 func quarters(w http.ResponseWriter, req *http.Request) {
@@ -20,20 +22,18 @@ func quarters(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-	db, _ := sql.Open("sqlite3", config.GetEnv("DB_PATH", "../database.sqlite"))
-	stmt, _ := db.Prepare("CREATE TABLE IF NOT EXISTS quarters (id INTEGER PRIMARY KEY, description TEXT)")
-	stmt.Exec()
+	db, _ := sql.Open("sqlite3", config.GetEnv("DB_PATH", "../database/database.sqlite"))
 
-	stmt, _ = db.Prepare("INSERT INTO quarters (description) VALUES (?)")
-	stmt.Exec("Lorem ipsum dolor sit amet")
+	stmt, _ := db.Prepare("INSERT INTO `quarters` (title, start_date, end_date) VALUES (?, ?, ?)")
+	stmt.Exec("Lorem ipsum dolor sit amet", "2020-01-01 00:00:00", "2020-03-28 23:59:59")
 
-	rows, _ := db.Query("SELECT id, description FROM quarters")
+	rows, _ := db.Query("SELECT id, title, start_date, end_date FROM quarters")
 
 	var quarters []quarter
 
 	for rows.Next() {
 		var q quarter
-		err := rows.Scan(&q.ID, &q.Description)
+		err := rows.Scan(&q.ID, &q.Title, &q.StartDate, &q.EndDate)
 		if err != nil {
 			fmt.Println(err.Error())
 			continue
