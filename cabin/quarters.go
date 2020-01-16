@@ -23,23 +23,19 @@ func quarters(w http.ResponseWriter, req *http.Request) {
 	}
 
 	db, _ := sql.Open("sqlite3", config.GetEnv("DB_PATH", "../database/database.sqlite"))
-
-	stmt, _ := db.Prepare("INSERT INTO `quarters` (title, start_date, end_date) VALUES (?, ?, ?)")
-	stmt.Exec("Lorem ipsum dolor sit amet", "2020-01-01 00:00:00", "2020-03-28 23:59:59")
-
 	rows, _ := db.Query("SELECT id, title, start_date, end_date FROM quarters")
 
-	var quarters []quarter
+	quarters := make([]quarter, 0)
 
 	for rows.Next() {
-		var q quarter
-		err := rows.Scan(&q.ID, &q.Title, &q.StartDate, &q.EndDate)
+		var qrt quarter
+		err := rows.Scan(&qrt.ID, &qrt.Title, &qrt.StartDate, &qrt.EndDate)
 		if err != nil {
 			fmt.Println(err.Error())
 			continue
 		}
 
-		quarters = append(quarters, q)
+		quarters = append(quarters, qrt)
 	}
 
 	quartersJSON, err := json.Marshal(quarters)
