@@ -17,7 +17,7 @@ func main() {
 	mux.HandleFunc("/key-results", keyResults)
 
 	err := http.ListenAndServe(
-		fmt.Sprintf(":%s", config.GetEnv("APP_PORT", "8000")),
+		fmt.Sprintf(":%s", config.GetEnv("APP_PORT", "5000")),
 		handlers.CompressHandler(mux),
 	)
 	if err != nil {
