@@ -11,6 +11,12 @@ import (
 
 func init() {
 	config.Load()
+
+	if viper.GetBool("app.debug") {
+		gin.SetMode("debug")
+	} else {
+		gin.SetMode(gin.ReleaseMode)
+	}
 }
 
 func main() {

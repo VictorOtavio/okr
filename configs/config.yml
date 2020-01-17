@@ -1,3 +1,7 @@
+app:
+  env: development
+  debug: true
+
 server:
   host: "localhost"
   port: 8000
