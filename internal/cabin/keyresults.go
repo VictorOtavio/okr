@@ -3,6 +3,7 @@ package cabin
 import (
 	"database/sql"
 	"fmt"
+	"net/http"
 
 	"github.com/gin-gonic/gin"
 	_ "github.com/mattn/go-sqlite3" // sqlite3 driver
@@ -33,5 +34,5 @@ func KeyResultsIndex(ctx *gin.Context) {
 		keyResults = append(keyResults, kr)
 	}
 
-	ctx.JSON(200, keyResults)
+	ctx.JSON(http.StatusOK, keyResults)
 }

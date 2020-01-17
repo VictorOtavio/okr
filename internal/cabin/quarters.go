@@ -3,6 +3,7 @@ package cabin
 import (
 	"database/sql"
 	"fmt"
+	"net/http"
 
 	"github.com/gin-gonic/gin"
 	_ "github.com/mattn/go-sqlite3" // sqlite3 driver
@@ -44,5 +45,16 @@ func QuarterIndex(ctx *gin.Context) {
 		quarters = append(quarters, qrt)
 	}
 
-	ctx.JSON(200, quarters)
+	ctx.JSON(http.StatusOK, quarters)
+}
+
+// QuarterStore store a new quarter
+func QuarterStore(ctx *gin.Context) {
+	var quarter map[string]string
+	if err := ctx.ShouldBindJSON(&quarter); err != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	ctx.JSON(http.StatusCreated, quarter)
 }
