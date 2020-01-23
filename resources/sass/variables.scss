@@ -1,0 +1,33 @@
+// Colors
+$black: #0a0a0a;
+$black-bis: #1e2127;
+$black-ter: #242424;
+
+$grey-darker: #3a3f4b;
+$grey-dark: #5c6370;
+$grey: #7a7a7a;
+$grey-light: #abb2bf;
+$grey-lighter: #dbdbdb;
+$grey-lightest: #ededed;
+
+$white-ter: #f5f5f5;
+$white-bis: #fafafa;
+$white: #fff;
+
+$orange: #d19a66;
+$yellow: #fbd4a0;
+$green: #98c379;
+$turquoise: #56b6c2;
+$cyan: #61afef;
+$blue: #49a5fb;
+$purple: #561d5d;
+$red: #e06c75;
+
+// Derived
+$family-sans-serif: "Open Sans", sans-serif;
+$primary: $purple;
+$background: $purple;
+$body-background-color: $background;
+$text: $grey-lighter;
+$text-light: $grey-lightest;
+$text-strong: $grey-lightest;

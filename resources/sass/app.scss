@@ -1,9 +1,12 @@
+@charset "utf-8";
+
+@import "~@fortawesome/fontawesome-free/css/all.css";
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700|Bebas+Neue&display=swap");
+
+@import "variables";
+@import "~bulma";
+
 html,
 body {
-  background-color: #561d5d;
-  color: #e3ebef;
-  font-family: "Nunito", sans-serif;
-  font-weight: 200;
   height: 100vh;
-  margin: 0;
 }
